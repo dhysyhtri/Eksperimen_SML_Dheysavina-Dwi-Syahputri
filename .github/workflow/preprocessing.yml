@@ -1,0 +1,36 @@
+name: Automated Preprocessing Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  preprocess:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pandas
+
+    - name: Run preprocessing script
+      run: |
+        python Preprocessing/Automate_Dheysavina\ Dwi\ Syahputri.py
+
+    - name: Commit processed dataset
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git add Preprocessing/AmazonSaleReport_preprocessing/amazon_sales_clean.csv
+        git commit -m "Update preprocessed dataset (automated)" || echo "No changes to commit"
+        git push
