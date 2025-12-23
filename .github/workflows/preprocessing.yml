@@ -1,4 +1,4 @@
-name: Automated Preprocessing Pipeline
+name: Automated Preprocessing
 
 on:
   push:
