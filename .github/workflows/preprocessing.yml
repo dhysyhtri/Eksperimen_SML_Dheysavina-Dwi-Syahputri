@@ -25,7 +25,7 @@ jobs:
 
     - name: Run preprocessing script
       run: |
-        python Preprocessing/Automate_Dheysavina\ Dwi\ Syahputri.py
+        python Preprocessing/Automate_Dheysavina-Dwi-Syahputri.py
 
     - name: Commit processed dataset
       run: |
